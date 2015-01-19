@@ -42,9 +42,9 @@ if __name__ == "__main__":
         #distances.append(first_dist(prev_pt, curr_pt))
         #prev_pt = curr_pt
     #print len(distances)
-    xs = map(operator.itemgetter(0), pts)[:1000]
-    ys = map(operator.itemgetter(1), pts)[:1000]
-    zs = range(len(pts))[:1000]
+    xs = map(operator.itemgetter(0), pts)[:50]
+    ys = map(operator.itemgetter(1), pts)[:50]
+    zs = map(lambda x : x * 10, range(len(pts))[:50])
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
     ax.plot(xs, ys, zs)
