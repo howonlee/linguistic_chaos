@@ -1,8 +1,10 @@
 import math
 import random
+import operator
 import numpy as np
 import scipy.sparse as sci_sp
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 def bigrams(ls):
     return zip(ls, ls[1:])
@@ -32,11 +34,20 @@ if __name__ == "__main__":
             word_counts[word] = 1
     wordmat = sci_sp.dok_matrix((len(corpus), len(corpus)))
     prev_pt = (0,0)
-    distances = []
+    #distances = []
+    pts = []
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
-        distances.append(first_dist(prev_pt, curr_pt))
-        prev_pt = curr_pt
-    print len(distances)
-    plt.plot(distances[:1000])
-    plt.show()
+        pts.append(curr_pt)
+        #distances.append(first_dist(prev_pt, curr_pt))
+        #prev_pt = curr_pt
+    #print len(distances)
+    xs = map(operator.itemgetter(0), pts)[:1000]
+    ys = map(operator.itemgetter(1), pts)[:1000]
+    zs = range(len(pts))[:1000]
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    ax.scatter(xs, ys, zs)
+    fig.savefig("trajectory")
+    #plt.plot(distances[:100])
+    #plt.show()
