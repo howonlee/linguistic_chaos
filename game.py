@@ -14,5 +14,4 @@ if __name__ == "__main__":
     last_idx = (random.randint(0,999), random.randint(0,999))
     fig = plt.figure()
     ax = plt.axes(xlim=(0,1000), ylim=(0,1000))
-
     print frac, last_idx
