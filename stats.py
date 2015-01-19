@@ -1,4 +1,5 @@
 import math
+import random
 import numpy as np
 import scipy.sparse as sci_sp
 import matplotlib.pyplot as plt
@@ -9,6 +10,9 @@ def bigrams(ls):
 def euclid_dist(p0, p1):
     return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
+def first_dist(p0, p1):
+    return (p0[0] - p1[0])
+
 #def manhattan_dist(first, second):
 
 word_map = {}
@@ -18,20 +22,20 @@ if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
-    curr_idx = 0
+    word_range = range(len(corpus))
+    random.shuffle(word_range) #look at that mutation
     for word in corpus:
         if word in word_map:
             word_counts[word] += 1
         else:
-            word_map[word] = curr_idx
+            word_map[word] = word_range.pop()
             word_counts[word] = 1
-            curr_idx += 1
-    wordmat = sci_sp.dok_matrix((curr_idx, curr_idx))
+    wordmat = sci_sp.dok_matrix((len(corpus), len(corpus)))
     prev_pt = (0,0)
     distances = []
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
-        distances.append(euclid_dist(prev_pt, curr_pt))
+        distances.append(first_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
     print len(distances)
     plt.plot(distances[:1000])
