@@ -1,20 +1,8 @@
 import numpy as np
 import random
 import matplotlib.pyplot as plt
-import matplotlib.animation as anim
 
-
-def next_idx(idx):
-    ifs_map = {
-            1 : [[],[]],
-            2 : [[],[]],
-            3 : [[],[]],
-    }
-    next_ifs = random.choice([0,1,2])
-    return ifs_map[next_ifs]
-
-def animate(i):
-    next_idx = next_idx(i)
+#no animations, but interesting distances and stuff
 
 if __name__ == "__main__":
     frac = np.zeros((1000, 1000))
