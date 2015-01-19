@@ -1,4 +1,4 @@
 Chaos Game
 ===
 
-Easy chaos game, try it with stuff
+Investigation of the implicit chaos game posed by linguistic corpuses
