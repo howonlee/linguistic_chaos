@@ -47,7 +47,6 @@ if __name__ == "__main__":
     zs = range(len(pts))[:1000]
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
-    ax.scatter(xs, ys, zs)
-    fig.savefig("trajectory")
+    ax.plot(xs, ys, zs)
     #plt.plot(distances[:100])
-    #plt.show()
+    plt.show()
