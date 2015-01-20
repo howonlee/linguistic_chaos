@@ -86,14 +86,20 @@ def inorder_wordmap(corpus):
             word_map[word] = vocab_range.pop()
 
 def count_wordmap(corpus):
-    pass
+    global word_counts, word_map
+    vocab_range = range(len(set(corpus)))
+    for word in corpus:
+        word_counts[word] += 1
+    for word, _ in word_counts.most_common():
+        word_map[word] = vocab_range.pop()
 
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
     #random_wordmap(corpus)
-    inorder_wordmap(corpus)
+    #inorder_wordmap(corpus)
+    count_wordmap(corpus)
     prev_pt = (0,0)
     distances = []
     pts = []
