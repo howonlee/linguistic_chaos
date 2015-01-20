@@ -1,6 +1,7 @@
 import math
 import random
 import operator
+import collections
 import numpy as np
 import scipy.sparse as sci_sp
 import matplotlib.pyplot as plt
@@ -18,35 +19,34 @@ def first_dist(p0, p1):
 #def manhattan_dist(first, second):
 
 word_map = {}
-word_counts = {}
+word_counts = collections.Counter()
 
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
     word_range = range(len(corpus))
-    random.shuffle(word_range) #look at that mutation
+    #random.shuffle(word_range) #look at that mutation
     for word in corpus:
-        if word in word_map:
-            word_counts[word] += 1
-        else:
-            word_map[word] = word_range.pop()
-            word_counts[word] = 1
+        word_counts[word] += 1
+    for word, _ in word_counts.most_common():
+        word_map[word] = word_range.pop()
     wordmat = sci_sp.dok_matrix((len(corpus), len(corpus)))
     prev_pt = (0,0)
-    #distances = []
+    distances = []
     pts = []
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
         pts.append(curr_pt)
-        #distances.append(first_dist(prev_pt, curr_pt))
-        #prev_pt = curr_pt
+        distances.append(first_dist(prev_pt, curr_pt))
+        prev_pt = curr_pt
     #print len(distances)
-    xs = map(operator.itemgetter(0), pts)[:50]
-    ys = map(operator.itemgetter(1), pts)[:50]
-    zs = map(lambda x : x * 10, range(len(pts))[:50])
+    xs = map(operator.itemgetter(0), pts)[:700]
+    ys = map(operator.itemgetter(1), pts)[:700]
+    zs = map(lambda x : x * 10, range(len(pts))[:700])
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
-    ax.plot(xs, ys, zs)
-    #plt.plot(distances[:100])
+    ax.scatter(xs, ys, zs)
+    #plt.plot(distances[:200])
     plt.show()
+    #plt.savefig("distances")
