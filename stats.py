@@ -65,10 +65,31 @@ def word_plot(pts, num_pts=1000):
     plt.show()
     plt.savefig("word_retmap")
 
+def random_wordmap(corpus):
+    global word_counts, word_map
+    vocab_range = range(len(set(corpus)))
+    random.shuffle(vocab_range) #look at that mutation
+    for word in corpus:
+        word_counts[word] += 1
+    for word in corpus:
+        if word not in word_map:
+            word_map[word] = vocab_range.pop()
+
+def inorder_wordmap(corpus):
+    global word_counts, word_map
+    vocab_range = range(len(set(corpus)))
+    for word in corpus:
+        word_counts[word] += 1
+    for word in corpus:
+        if word not in word_map:
+            word_map[word] = vocab_range.pop()
+
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
+    random_wordmap(corpus)
+    #inorder_wordmap(corpus)
     vocab_range = range(len(set(corpus)))
     random.shuffle(vocab_range) #look at that mutation
     for word in corpus:
