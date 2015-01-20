@@ -46,6 +46,14 @@ def return_map(dists, num_pts=3000):
     plt.show()
     plt.savefig("dist_retmap")
 
+def word_plot(pts, num_pts=1000):
+    wordmat = sci_sp.dok_matrix((len(corpus), len(corpus)))
+    xs = map(operator.itemgetter(0), pts)[:num_pts]
+    ys = map(operator.itemgetter(1), pts)[:num_pts]
+    plt.scatter(xs, ys)
+    plt.show()
+    plt.savefig("word_retmap")
+
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
@@ -59,7 +67,6 @@ if __name__ == "__main__":
             word_map[word] = vocab_range.pop()
     #for word, _ in word_counts.most_common():
         #word_map[word] = word_range.pop()
-    wordmat = sci_sp.dok_matrix((len(corpus), len(corpus)))
     prev_pt = (0,0)
     distances = []
     pts = []
@@ -68,4 +75,5 @@ if __name__ == "__main__":
         pts.append(curr_pt)
         distances.append(manhattan_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
-    return_map(distances)
+    #return_map(distances)
+    word_plot(pts)
