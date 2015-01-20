@@ -20,6 +20,9 @@ def manhattan_dist(p0, p1):
 def first_dist(p0, p1):
     return (p0[0] - p1[0])
 
+def second_dist(p0, p1):
+    return (p0[1] - p1[1])
+
 #def manhattan_dist(first, second):
 
 word_map = {}
@@ -106,7 +109,7 @@ if __name__ == "__main__":
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
         pts.append(curr_pt)
-        distances.append(manhattan_dist(prev_pt, curr_pt))
+        distances.append(euclid_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
     return_map(distances)
     #word_plot(pts)
