@@ -13,7 +13,7 @@ def generate_fbm():
     dim_len = 1000
     times = range(1, dim_len + 1)
     gamma = np.zeros((dim_len, dim_len))
-    h = 0.75
+    h = 0.0001
     double_h = h * 2
     for i in times:
         for j in times:
