@@ -68,4 +68,4 @@ if __name__ == "__main__":
         pts.append(curr_pt)
         distances.append(manhattan_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
-    return_map(distances)
+    return_map_o2(distances)
