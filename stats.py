@@ -36,10 +36,10 @@ def dist_plot(dists, num_pts=200):
     plt.show()
     plt.savefig("distances")
 
-def return_map(dists, num_pts=200):
-    xs_first = something ####
-    xs_second = something ####
-    plt.scatter(first, second)
+def return_map(dists, num_pts=3000):
+    xs_first = dists[:num_pts]
+    xs_second = dists[1:num_pts+1]
+    plt.scatter(xs_first, xs_second)
     plt.show()
     plt.savefig("dist_retmap")
 
@@ -63,6 +63,6 @@ if __name__ == "__main__":
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
         pts.append(curr_pt)
-        distances.append(first_dist(prev_pt, curr_pt))
+        distances.append(euclid_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
-    dist_plot(distances)
+    return_map(distances)
