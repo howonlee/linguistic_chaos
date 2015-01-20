@@ -39,11 +39,21 @@ def dist_plot(dists, num_pts=200):
     plt.show()
     plt.savefig("distances")
 
-def return_map(dists, num_pts=3000):
+def old_return_map(dists, num_pts=3000):
     #this is a bad implementation
     xs_first = dists[:num_pts]
     xs_second = dists[1:num_pts+1]
     plt.scatter(xs_first, xs_second)
+    plt.show()
+    plt.savefig("dist_retmap")
+
+def return_map(dists, num_pts=3000):
+    vals = dists[:num_pts]
+    ret_mat = np.zeros((num_pts, num_pts))
+    for x in xrange(num_pts):
+        for y in xrange(num_pts):
+            ret_mat[x,y] = abs(vals[x] - vals[y])
+    plt.matshow(ret_mat)
     plt.show()
     plt.savefig("dist_retmap")
 
@@ -76,5 +86,5 @@ if __name__ == "__main__":
         pts.append(curr_pt)
         distances.append(manhattan_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
-    #return_map(distances)
-    word_plot(pts)
+    return_map(distances)
+    #word_plot(pts)
