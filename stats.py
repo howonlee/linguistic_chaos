@@ -40,6 +40,7 @@ def dist_plot(dists, num_pts=200):
     plt.savefig("distances")
 
 def return_map(dists, num_pts=3000):
+    #this is a bad implementation
     xs_first = dists[:num_pts]
     xs_second = dists[1:num_pts+1]
     plt.scatter(xs_first, xs_second)

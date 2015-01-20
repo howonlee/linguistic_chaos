@@ -10,10 +10,10 @@ def normalize(arr):
     return 1 - ((arr_max - arr) / rng)
 
 def generate_fbm():
-    dim_len = 5000
+    dim_len = 1000
     times = range(1, dim_len + 1)
     gamma = np.zeros((dim_len, dim_len))
-    h = 0.6
+    h = 0.75
     double_h = h * 2
     for i in times:
         for j in times:
@@ -24,14 +24,22 @@ def generate_fbm():
     u = normalize(u)
     return u
 
-def return_map(vals, num_pts=3000):
+def generate_sin():
+    return np.sin(np.linspace(0, 10, 100))
+
+def return_map(vals, num_pts=100):
     #implement this properly
-    xs_first = vals[:num_pts]
-    xs_second = vals[1:num_pts+1]
-    plt.scatter(xs_first, xs_second)
+    vals = vals[:num_pts]
+    ret_mat = np.zeros((num_pts, num_pts))
+    #probably a vectorized way to do it
+    for x in xrange(num_pts):
+        for y in xrange(num_pts):
+            ret_mat[x,y] = abs(vals[x] - vals[y])
+    plt.matshow(ret_mat)
     plt.show()
     plt.savefig("fbm_retmap")
 
+#return_map(generate_sin())
 return_map(generate_fbm())
 #plt.plot(generate_fbm())
 #plt.show()
