@@ -13,6 +13,9 @@ def bigrams(ls):
 def euclid_dist(p0, p1):
     return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
+def manhattan_dist(p0, p1):
+    return abs(p0[0] - p1[0]) + abs(p0[1] - p1[1])
+
 def first_dist(p0, p1):
     return (p0[0] - p1[0])
 
@@ -63,6 +66,6 @@ if __name__ == "__main__":
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
         pts.append(curr_pt)
-        distances.append(euclid_dist(prev_pt, curr_pt))
+        distances.append(manhattan_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
     return_map(distances)
