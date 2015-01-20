@@ -27,6 +27,9 @@ def generate_fbm():
 def generate_sin():
     return np.sin(np.linspace(0, 10, 100))
 
+def generate_whacky_sin():
+    return (np.sin(np.linspace(0, 10, 100)) + np.sin(np.linspace(2, 16, 100)))
+
 def return_map(vals, num_pts=100):
     #implement this properly
     vals = vals[:num_pts]
