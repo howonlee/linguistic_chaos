@@ -1,3 +1,4 @@
+import sys
 import math
 import random
 import operator
@@ -84,21 +85,15 @@ def inorder_wordmap(corpus):
         if word not in word_map:
             word_map[word] = vocab_range.pop()
 
+def count_wordmap(corpus):
+    pass
+
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
-    random_wordmap(corpus)
-    #inorder_wordmap(corpus)
-    vocab_range = range(len(set(corpus)))
-    random.shuffle(vocab_range) #look at that mutation
-    for word in corpus:
-        word_counts[word] += 1
-    for word in corpus:
-        if word not in word_map:
-            word_map[word] = vocab_range.pop()
-    #for word, _ in word_counts.most_common():
-        #word_map[word] = word_range.pop()
+    #random_wordmap(corpus)
+    inorder_wordmap(corpus)
     prev_pt = (0,0)
     distances = []
     pts = []
