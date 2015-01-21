@@ -1,4 +1,4 @@
-from fbm_stats import generate_fbm
+from fbm_stats import generate_fbm, return_map
 from stats import count_wordmap
 import numpy as np
 import collections
@@ -38,6 +38,9 @@ def plot_fbm():
     plt.plot(fbm_list()[:3000])
     plt.show()
 
+def fbm_return_map():
+    return_map(fbm_list(), num_pts=300)
+
 def generate():
     word_counts, _ = load_corpus()
     word_commons = word_counts.most_common()
@@ -54,4 +57,5 @@ def generate():
 if __name__ == "__main__":
     #plot_fbm()
     #fbm_inspect()
-    print " ".join(generate()[:5000])
+    fbm_return_map()
+    #print " ".join(generate()[:5000])
