@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 def gen_and_save_fbm():
     fbm = generate_fbm(10000)
-    bins = np.linspace(0, 1, 1000)
-    np.save("digitized_fbm", np.digitize(fbm, bins))
+    fbm = fbm * 3000
+    np.save("digitized_fbm", fbm)
 
 def load_fbm(name="digitized_fbm.npy"):
     return np.load(name)
@@ -22,7 +22,7 @@ def load_corpus(name="corpus.txt"):
 def fbm_inspect():
     word_counts, word_map = load_corpus()
     word_common = word_counts.most_common()
-    fbm = collections.Counter(list(load_fbm()))
+    fbm = collections.Counter(map(int, list(load_fbm())))
     common = fbm.most_common()
     plt.hist(map(operator.itemgetter(1), common))
     plt.yscale("log")
@@ -30,3 +30,5 @@ def fbm_inspect():
 
 if __name__ == "__main__":
     fbm_inspect()
+    #plt.plot(load_fbm())
+    #plt.show()
