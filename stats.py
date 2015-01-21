@@ -109,6 +109,7 @@ def count_wordmap(corpus):
     for word, _ in word_counts.most_common():
         word_map[word] = vocab_range.pop()
 
+
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
@@ -124,6 +125,6 @@ if __name__ == "__main__":
         pts.append(curr_pt)
         distances.append(manhattan_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
-    return_poincare_plot(distances)
+    #return_poincare_plot(distances)
     #return_map(distances)
     #word_plot(pts)
