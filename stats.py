@@ -43,11 +43,10 @@ def dist_plot(dists, num_pts=200):
     plt.show()
     plt.savefig("distances")
 
-def old_return_map(dists, num_pts=3000):
-    #this is a bad implementation
+def phase_space_plot(dists, num_pts=3000):
     xs_first = dists[:num_pts]
     xs_second = dists[1:num_pts+1]
-    plt.scatter(xs_first, xs_second)
+    plt.plot(xs_first, xs_second)
     plt.show()
     plt.savefig("dist_retmap")
 
@@ -91,6 +90,7 @@ def random_wordmap(corpus):
     for word in corpus:
         if word not in word_map:
             word_map[word] = vocab_range.pop()
+    return word_counts, word_map
 
 def inorder_wordmap(corpus):
     global word_counts, word_map
@@ -100,6 +100,7 @@ def inorder_wordmap(corpus):
     for word in corpus:
         if word not in word_map:
             word_map[word] = vocab_range.pop()
+    return word_counts, word_map
 
 def count_wordmap(corpus):
     word_counts = collections.Counter()
@@ -119,13 +120,14 @@ def distance_hist(distances):
     plt.savefig("distances_hist")
     plt.show()
 
+
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
-    #random_wordmap(corpus)
-    #inorder_wordmap(corpus)
-    word_counts, word_map = count_wordmap(corpus)
+    word_counts, word_map = random_wordmap(corpus)
+    #word_counts, word_map = inorder_wordmap(corpus)
+    #word_counts, word_map = count_wordmap(corpus)
     prev_pt = (0,0)
     distances = []
     pts = []
@@ -135,8 +137,9 @@ if __name__ == "__main__":
         distances.append(euclid_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
     #distance_hist(distances)
-    plt.plot(distances[:5000])
-    plt.show()
+    #plt.plot(distances[:5000])
+    #plt.show()
     #return_poincare_plot(distances)
+    phase_space_plot(distances)
     #return_map(distances)
     #word_plot(pts)
