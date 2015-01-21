@@ -19,18 +19,29 @@ def load_corpus(name="corpus.txt"):
         word_counts, word_map = count_wordmap(corpus)
     return word_counts, word_map
 
+def fbm_commons():
+    fbm = collections.Counter(map(int, list(load_fbm())))
+    return fbm.most_common()
+
+def fbm_list():
+    return map(int, list(load_fbm()))
+
 def fbm_inspect():
     word_counts, word_map = load_corpus()
     word_common = word_counts.most_common()
-    fbm = collections.Counter(map(int, list(load_fbm())))
-    common = fbm.most_common()
-    plt.hist(map(operator.itemgetter(1), common))
+    plt.hist(map(operator.itemgetter(1), fbm_commons()))
     plt.yscale("log")
     plt.show()
 
 if __name__ == "__main__":
     word_counts, _ = load_corpus()
-    print word_counts.most_common()[:100]
-    #fbm_inspect()
-    #plt.plot(load_fbm())
-    #plt.show()
+    word_commons = word_counts.most_common()
+    curr_val = 0
+    val_map = {}
+    for word, val in fbm_commons():
+        val_map[word] = word_commons[curr_val][0]
+        curr_val += 1
+    genned = []
+    for word in fbm_list():
+        genned.append(val_map[word])
+    print " ".join(genned)
