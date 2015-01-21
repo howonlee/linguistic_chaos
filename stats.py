@@ -113,16 +113,16 @@ if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
-    random_wordmap(corpus)
+    #random_wordmap(corpus)
     #inorder_wordmap(corpus)
-    #count_wordmap(corpus)
+    count_wordmap(corpus)
     prev_pt = (0,0)
     distances = []
     pts = []
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
         pts.append(curr_pt)
-        distances.append(euclid_dist(prev_pt, curr_pt))
+        distances.append(manhattan_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
     return_poincare_plot(distances)
     #return_map(distances)
