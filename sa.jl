@@ -1,10 +1,12 @@
 #simulated annealing of the thing
-#be a good boy later and implement l-bfgs sometime
 
 using Optim
 using NPZ
 #read a data matrix, a model matrix,
 #create a matching matrix, learn a matching matrix
+
+#the data matrix is the fbm
+#the model matrix is the real words
 
 function read_data(file="data_mat.npy")
   data = npzread(file)
