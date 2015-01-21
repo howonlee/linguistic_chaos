@@ -42,7 +42,8 @@ def return_map(vals, num_pts=100):
     plt.show()
     plt.savefig("fbm_retmap")
 
-#return_map(generate_sin())
-return_map(generate_fbm())
-#plt.plot(generate_fbm())
-#plt.show()
+if __name__ == "__main__":
+    #return_map(generate_sin())
+    return_map(generate_fbm())
+    #plt.plot(generate_fbm())
+    #plt.show()
