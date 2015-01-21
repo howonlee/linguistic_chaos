@@ -109,7 +109,6 @@ def count_wordmap(corpus):
     for word, _ in word_counts.most_common():
         word_map[word] = vocab_range.pop()
 
-
 if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
