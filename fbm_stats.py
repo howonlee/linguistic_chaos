@@ -11,10 +11,9 @@ def normalize(arr):
     rng = arr_max - arr_min
     return 1 - ((arr_max - arr) / rng)
 
-def generate_fbm(dim_len=1000):
+def generate_fbm(dim_len=1000, h=0.4):
     times = range(1, dim_len + 1)
     gamma = np.zeros((dim_len, dim_len))
-    h = 0.001
     double_h = h * 2
     for i in times:
         for j in times:
@@ -31,7 +30,7 @@ def generate_sin():
 def generate_whacky_sin():
     return (np.sin(np.linspace(0, 10, 100)) + np.sin(np.linspace(2, 16, 100)))
 
-def return_map(vals, num_pts=100):
+def return_map(vals, num_pts=1000):
     vals = vals[:num_pts]
     ret_mat = np.zeros((num_pts, num_pts))
     #probably a vectorized way to do it
@@ -54,8 +53,8 @@ def plot_hist(fbm):
     plt.show()
 
 if __name__ == "__main__":
-    plot_hist(generate_fbm(4000))
+    #plot_hist(generate_fbm(4000))
     #return_map(generate_sin())
-    #return_map(generate_fbm())
+    return_map(generate_fbm())
     #plt.plot(generate_fbm())
     #plt.show()
