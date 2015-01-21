@@ -9,8 +9,7 @@ def normalize(arr):
     rng = arr_max - arr_min
     return 1 - ((arr_max - arr) / rng)
 
-def generate_fbm():
-    dim_len = 1000
+def generate_fbm(dim_len=1000):
     times = range(1, dim_len + 1)
     gamma = np.zeros((dim_len, dim_len))
     h = 0.0001
