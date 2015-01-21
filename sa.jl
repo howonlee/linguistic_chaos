@@ -16,7 +16,11 @@ function read_model(file="model_mat.npy")
   data
 end
 
-function matching_cost(x::Vector)
-  #something
-  #this is the only real thing which we'll fold into the optimization algorithm
+function matching_wrapper()
+  matching_cost = function()
+    #this is the only real thing which we'll fold into the optimization algorithm
+  end
+  matching_cost
 end
+
+
