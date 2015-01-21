@@ -10,8 +10,8 @@ def gen_and_save_fbm():
     fbm = fbm * 3000
     np.save("digitized_fbm", fbm)
 
-def load_fbm(name="digitized_fbm.npy"):
-    return np.load(name)
+def load_fbm(name="quick_fbm.npy"):
+    return (np.load(name) * 3000)
 
 def load_corpus(name="corpus.txt"):
     with open(name, "r") as corpus_file:
@@ -47,4 +47,5 @@ def generate():
     return genned
 
 if __name__ == "__main__":
-    gen_and_save_fbm()
+    #fbm_inspect()
+    print " ".join(generate())
