@@ -61,6 +61,16 @@ def return_map(dists, num_pts=3000):
     plt.show()
     plt.savefig("dist_retmap")
 
+def return_tensor_map(dists, num_pts=3000):
+    """
+    Make it a tensor
+    """
+    vals = dists[:num_pts]
+    ret_mat = np.zeros((num_pts, num_pts))
+    for x in xrange(num_pts):
+        for y in xrange(num_pts):
+            ret_mat[x,y] = abs(vals[x] - vals[y])
+
 def word_plot(pts, num_pts=1000):
     wordmat = sci_sp.dok_matrix((len(corpus), len(corpus)))
     xs = map(operator.itemgetter(0), pts)[:num_pts]
