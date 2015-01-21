@@ -29,6 +29,8 @@ def fbm_inspect():
     plt.show()
 
 if __name__ == "__main__":
-    fbm_inspect()
+    word_counts, _ = load_corpus()
+    print word_counts.most_common()[:100]
+    #fbm_inspect()
     #plt.plot(load_fbm())
     #plt.show()
