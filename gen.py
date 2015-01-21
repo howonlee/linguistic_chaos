@@ -6,7 +6,7 @@ import operator
 import matplotlib.pyplot as plt
 
 def gen_and_save_fbm():
-    fbm = generate_fbm(10000)
+    fbm = generate_fbm(25000)
     fbm = fbm * 3000
     np.save("digitized_fbm", fbm)
 
@@ -33,7 +33,7 @@ def fbm_inspect():
     plt.yscale("log")
     plt.show()
 
-if __name__ == "__main__":
+def generate():
     word_counts, _ = load_corpus()
     word_commons = word_counts.most_common()
     curr_val = 0
@@ -44,4 +44,7 @@ if __name__ == "__main__":
     genned = []
     for word in fbm_list():
         genned.append(val_map[word])
-    print " ".join(genned)
+    return genned
+
+if __name__ == "__main__":
+    gen_and_save_fbm()
