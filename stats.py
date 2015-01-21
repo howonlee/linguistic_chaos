@@ -61,15 +61,18 @@ def return_map(dists, num_pts=3000):
     plt.show()
     plt.savefig("dist_retmap")
 
-def return_tensor_map(dists, num_pts=3000):
+def return_poincare_plot(dists, num_pts=3000):
     """
     Make it a tensor
     """
     vals = dists[:num_pts]
-    ret_mat = np.zeros((num_pts, num_pts))
-    for x in xrange(num_pts):
-        for y in xrange(num_pts):
-            ret_mat[x,y] = abs(vals[x] - vals[y])
+    vals2 = dists[1:num_pts+1]
+    vals3 = dists[2:num_pts+2]
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    ax.scatter(vals, vals2, vals3)
+    plt.show()
+    plt.savefig("poin_plot")
 
 def word_plot(pts, num_pts=1000):
     wordmat = sci_sp.dok_matrix((len(corpus), len(corpus)))
@@ -110,9 +113,9 @@ if __name__ == "__main__":
     corpus = []
     with open ("corpus.txt", "r") as corpus_file:
         corpus = corpus_file.read().split()
-    #random_wordmap(corpus)
+    random_wordmap(corpus)
     #inorder_wordmap(corpus)
-    count_wordmap(corpus)
+    #count_wordmap(corpus)
     prev_pt = (0,0)
     distances = []
     pts = []
@@ -121,5 +124,6 @@ if __name__ == "__main__":
         pts.append(curr_pt)
         distances.append(euclid_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
-    return_map(distances)
+    return_poincare_plot(distances)
+    #return_map(distances)
     #word_plot(pts)
