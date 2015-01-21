@@ -105,7 +105,7 @@ def count_wordmap(corpus):
     word_counts = collections.Counter()
     word_map = {}
     vocab_range = range(len(set(corpus)))
-    for word in corpus[:ct]:
+    for word in corpus:
         word_counts[word] += 1
     for word, _ in word_counts.most_common():
         word_map[word] = vocab_range.pop()

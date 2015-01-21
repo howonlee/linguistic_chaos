@@ -11,7 +11,7 @@ def gen_and_save_fbm():
     np.save("digitized_fbm", fbm)
 
 def load_fbm(name="quick_fbm.npy"):
-    return (np.load(name) * 3000)
+    return (np.load(name) * 2000)
 
 def load_corpus(name="corpus.txt"):
     with open(name, "r") as corpus_file:
