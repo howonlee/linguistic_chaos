@@ -29,8 +29,13 @@ def fbm_list():
 def fbm_inspect():
     word_counts, word_map = load_corpus()
     word_common = word_counts.most_common()
-    plt.hist(map(operator.itemgetter(1), fbm_commons()))
+    plt.hist(map(operator.itemgetter(1), fbm_commons()), bins=40)
     plt.yscale("log")
+    plt.xscale("log")
+    plt.show()
+
+def plot_fbm():
+    plt.plot(fbm_list()[:3000])
     plt.show()
 
 def generate():
@@ -47,5 +52,6 @@ def generate():
     return genned
 
 if __name__ == "__main__":
-    #fbm_inspect()
-    print " ".join(generate())
+    #plot_fbm()
+    fbm_inspect()
+    #print " ".join(generate()[:5000])
