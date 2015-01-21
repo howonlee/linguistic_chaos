@@ -1,4 +1,6 @@
 import numpy as np
+import collections
+import operator
 import numpy.linalg as np_lin
 import numpy.random as np_rand
 import matplotlib.pyplot as plt
@@ -12,7 +14,7 @@ def normalize(arr):
 def generate_fbm(dim_len=1000):
     times = range(1, dim_len + 1)
     gamma = np.zeros((dim_len, dim_len))
-    h = 0.0001
+    h = 0.001
     double_h = h * 2
     for i in times:
         for j in times:
@@ -41,8 +43,20 @@ def return_map(vals, num_pts=100):
     plt.show()
     plt.savefig("fbm_retmap")
 
+def plot_hist(fbm):
+    fbm = fbm * 3000
+    fbm = list(fbm)
+    fbm = map(int, fbm)
+    print fbm
+    fbm_ctr = collections.Counter(fbm)
+    plt.hist(map(operator.itemgetter(1), fbm_ctr.most_common()), bins=30)
+    plt.yscale("log")
+    plt.savefig("fbm_hist")
+    plt.show()
+
 if __name__ == "__main__":
+    plot_hist(generate_fbm(4000))
     #return_map(generate_sin())
-    return_map(generate_fbm())
+    #return_map(generate_fbm())
     #plt.plot(generate_fbm())
     #plt.show()

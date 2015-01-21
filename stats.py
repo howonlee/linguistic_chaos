@@ -102,12 +102,22 @@ def inorder_wordmap(corpus):
             word_map[word] = vocab_range.pop()
 
 def count_wordmap(corpus):
-    global word_counts, word_map
+    word_counts = collections.Counter()
+    word_map = {}
     vocab_range = range(len(set(corpus)))
     for word in corpus:
         word_counts[word] += 1
     for word, _ in word_counts.most_common():
         word_map[word] = vocab_range.pop()
+    return word_counts, word_map
+
+def distance_hist(distances):
+    distances = map(int, distances)
+    dist_ctr = collections.Counter(distances)
+    plt.hist(map(operator.itemgetter(1), dist_ctr.most_common()))
+    plt.yscale("log")
+    plt.savefig("distances_hist")
+    plt.show()
 
 if __name__ == "__main__":
     corpus = []
@@ -115,15 +125,18 @@ if __name__ == "__main__":
         corpus = corpus_file.read().split()
     #random_wordmap(corpus)
     #inorder_wordmap(corpus)
-    count_wordmap(corpus)
+    word_counts, word_map = count_wordmap(corpus)
     prev_pt = (0,0)
     distances = []
     pts = []
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
         pts.append(curr_pt)
-        distances.append(manhattan_dist(prev_pt, curr_pt))
+        distances.append(euclid_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
+    #distance_hist(distances)
+    plt.plot(distances[:5000])
+    plt.show()
     #return_poincare_plot(distances)
     #return_map(distances)
     #word_plot(pts)
