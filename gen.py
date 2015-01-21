@@ -53,5 +53,5 @@ def generate():
 
 if __name__ == "__main__":
     #plot_fbm()
-    fbm_inspect()
-    #print " ".join(generate()[:5000])
+    #fbm_inspect()
+    print " ".join(generate()[:5000])
