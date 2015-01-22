@@ -22,8 +22,17 @@ function make_match(datamat, modelmat)
 end
 
 function matching_wrapper()
-  matching_cost = function()
+  total_cost = function()
     #this is the only real thing which we'll fold into the optimization algorithm
   end
-  matching_cost
+
+  local_cost = function(i)
+  end
+
+  total_cost, local_cost
+end
+
+function eo()
+  #implement eo
+  #probably start with piecewise local search
 end
