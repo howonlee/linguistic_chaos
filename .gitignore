@@ -1,4 +1,5 @@
 *.txt
 *.npy
 *.pyc
+*.edgelist
 genned

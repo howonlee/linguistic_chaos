@@ -52,9 +52,17 @@ def plot_hist(fbm):
     plt.savefig("fbm_hist")
     plt.show()
 
+def save_edgelist(fbm):
+    fbm = fbm * 10000
+    fbm = map(int, list(fbm))
+    for first, second in zip(fbm, fbm[1:]):
+        print first, second
+    # and then pipe this into something interesting
+
 if __name__ == "__main__":
+    save_edgelist(generate_fbm(10000))
     #plot_hist(generate_fbm(4000))
     #return_map(generate_sin())
-    return_map(generate_fbm())
+    #return_map(generate_fbm())
     #plt.plot(generate_fbm())
     #plt.show()
