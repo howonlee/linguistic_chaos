@@ -134,12 +134,13 @@ if __name__ == "__main__":
     for word1, word2 in bigrams(corpus):
         curr_pt = (word_map[word1], word_map[word2])
         pts.append(curr_pt)
+        print curr_pt[0], curr_pt[1]
         distances.append(euclid_dist(prev_pt, curr_pt))
         prev_pt = curr_pt
     #distance_hist(distances)
     #plt.plot(distances[:5000])
     #plt.show()
     #return_poincare_plot(distances)
-    phase_space_plot(distances)
+    #phase_space_plot(distances)
     #return_map(distances)
     #word_plot(pts)
